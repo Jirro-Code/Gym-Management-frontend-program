@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+  <nav>
+    <button id="showData">Show</button>
+    <button id="enter">Enter</button>
+  </nav>
+  <div class="curtain" id="curtain"></div>
+  <div class="calendarContainer">   
+    <div class="calendar" id="calendar">
+      <div>
+        <div class="Buttons">
+          <button id="prevMonth">&lt;</button>
+          <button id="nextMonth">&gt;</button>
+        </div>
+      </div>
+      <div>
+        <div class="monthYear" id="monthYear"></div>
+        <div class="calendarDays">
+          <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+          </div>
+          <div class="days" id="days"></div>
+        </div>  
+      </div>
+    </div>
+  </div>
+  <div class="form">
+    <button id="close">X</button>
+    <p>GYM PROGRESS OVERLOAD PROGRAM</p>
+    <div class="form1">
+      <p>Your workout</p><br>
+      <form id="form1">
+        <button id="downButton">Down</button>
+        <button id="upButton">Up</button>
+        <div class="workoutTypeChoices">
+          <input type="radio" id="chest" name="workoutType" value="Chest">
+          <label for="chest">Chest</label><br>
+          <input type="radio" id="back" name="workoutType" value="Back">
+          <label for="back">Back</label><br>
+          <input type="radio" id="legs" name="workoutType" value="Legs">
+          <label for="legs">Legs</label><br>
+          <input type="radio" id="shoulders" name="workoutType" value="Shoulders">
+          <label for="shoulders">Shoulders</label><br>
+          <input type="radio" id="arms" name="workoutType" value="Arms">
+          <label for="arms">Arms</label><br>  
+          <input type="radio" id="custom" name="workoutType" value="Custom">
+          <label for="custom">Custom</label><br>
+          <input type="submit" id="form1Submit">
+        </div> 
+      </form>
+      <form class="workoutTypeForm" id="form2">
+        <button id="downButton2">Down</button>
+        <button id="upButton2">Up</button>
+        <div class="workoutTypeChoices2">
+          <p>Choose a workout type first</p>
+        </div>
+      </form>
+      <form id="form3">
+        <p id="workout"></p><br>
+        <label for="sets">Number of sets</label><br>
+        <input type="Number" id="sets" placeholder="0" class="input" required><br>
+        <label for="reps">Number of reps</label><br>
+        <input type="Number" id="reps" placeholder="0" class="input" required><br>
+        <label for="weight">Weight</label><br>
+        <input type="Number" id="weight" placeholder="0lbs" class="input" required>
+        <input type="radio" id="lbs" name="weightUnit" value="lbs" checked>
+        <label for="lbs">lbs</label>
+        <input type="radio" id="kg" name="weightUnit" value="kg">
+        <label for="kg">kg</label><br>
+        <label for="date">Date</label><br>
+        <input type="date" id="date" class="input" required><br>
+        <input type="button" id="mainSubmit">
+      </form>
+    </div>
+  </div>
+  <div class="box">
+    <button id="closeHistory">X</button>
+    <div class="workoutHistory">
+      <div class="workout-Card" id="workoutCard" style="display:none;"></div>
+    </div>
+  </div>
+  <div class="box2"><div class="popUpContainer"></div></div>
+  <script src="script.js"></script>
+</body>
+</html>
