@@ -1,12 +1,18 @@
 import {Router} from "express";
-import { register } from "../controllers/authController.ts";
+import { login, register } from "../controllers/authController.ts";
 import { validateBody } from "../middleware/validations.ts";
 import { insertUserSchema } from "../db/schema.ts";
-
+import { z } from "zod";
 
 const router = Router();
 
+const loginSchema = z.object({
+    email: z.email("Invalid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters long")
+});
+
 router.post("/register", validateBody(insertUserSchema), register);
+router.post("/login", validateBody(loginSchema), login)
 
 export { router };
 export default router;

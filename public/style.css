@@ -232,7 +232,7 @@ input:focus-visible {
 
 .Buttons {
   display: flex;
-  gap: 10px;
+  width: 100%;
 }
 
 .Buttons button {
@@ -242,6 +242,10 @@ input:focus-visible {
   font-size: 1rem;
   font-weight: 700;
   background: var(--surface-1);
+}
+
+#nextMonth{
+  margin-left: auto;
 }
 
 .monthYear {

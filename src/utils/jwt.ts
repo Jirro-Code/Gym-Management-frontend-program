@@ -2,6 +2,7 @@ import  {type JWTPayload, jwtVerify, SignJWT} from "jose";
 import {createSecretKey} from "crypto"
 import env from "../../env.ts";
 
+//JWTPayload is the mixed data stored in the token
 export interface JwtPayload extends JWTPayload {
     id: string;
     username: string;
@@ -16,6 +17,7 @@ export const generateToken = async (payload: JwtPayload) => {
     .setProtectedHeader({alg: "HS256"})
     .setIssuedAt()
     .setExpirationTime(env.JWT_EXPIRES_IN || "3d")
+    //attach the secret key to sign the token
     .sign(secretKey);
 }
 
