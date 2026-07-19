@@ -105,6 +105,28 @@ export const getExerciseByName = async (req: AuthenticatedRequest, res: Response
     }
 }
 
+export const updateExercise = async (req: AuthenticatedRequest, res: Response) => {
+    try{
+        const exerciseId = z.string().uuid("Invalid exercise ID").parse(req.params.id); // Validate that the exerciseId is a valid UUID
+        const userId = req.user!.id;
+        
+        if(Object.keys(req.body).length === 0){
+            return res.status(400).json({message: "No fields provided for update"});
+        }
+        
+        await db.update(exercises).set(req.body).where(and(eq(exercises.id, exerciseId), eq(exercises.userId, userId)));
+        
+        res.status(200).json({message: "Exercise updated successfully"});
+    }
+    catch (e){
+        if (e instanceof z.ZodError) {
+            console.error("Invalid exercise ID", e);
+            return res.status(400).json({message: "Invalid exercise ID", error: e.issues});
+        }
+        console.error("Error occurred while updating exercise:", e);
+        res.status(500).json({message: "Internal server error", error: e});
+    }
+}
 
 export const deleteExerciseById = async (req: AuthenticatedRequest, res: Response) => {
     try{
