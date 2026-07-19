@@ -1,6 +1,7 @@
 import express from "express";
 import path from "node:path";
 import authRoutes from "./routes/authRoutes.ts";
+import exerciseRoutes from "./routes/exerciseRoute.ts";
 import { isTest } from "../env.ts";
 import helmet from "helmet";
 import cors from "cors";
@@ -14,7 +15,10 @@ app.use(express.urlencoded({extended: true}));
 app.use(morgan(`dev`, {
     skip: () => isTest(),
 }));
+
+//routes
 app.use("/api/auth", authRoutes);
+app.use("/api/exercise", exerciseRoutes);
 
 //app.use(express.static(path.join(process.cwd(), "public")));
 app.get("/", (req, res) => {
