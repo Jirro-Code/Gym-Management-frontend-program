@@ -2,11 +2,10 @@ import type { Response } from 'express';
 import type { AuthenticatedRequest } from '../middleware/authToken.ts';
 import { db } from "../db/connections.ts";
 import { exercises } from "../db/schema.ts";
-import { desc, eq, and, like} from "drizzle-orm";
+import { desc, eq, and} from "drizzle-orm";
 import Fuse from "fuse.js"
 import { v4 as uuid } from "uuid";
 import  z  from "zod";
-import { de } from 'zod/locales';
 
 
 export const createExercise = async (req: AuthenticatedRequest, res: Response) => {
@@ -106,6 +105,7 @@ export const getExerciseByName = async (req: AuthenticatedRequest, res: Response
     }
 }
 
+
 export const deleteExerciseById = async (req: AuthenticatedRequest, res: Response) => {
     try{
         const exerciseId = z.string().uuid("Invalid exercise ID").parse(req.params.id); // Validate that the exerciseId is a valid UUID
@@ -131,6 +131,18 @@ export const deleteExerciseById = async (req: AuthenticatedRequest, res: Respons
             return res.status(400).json({message: "Invalid exercise ID", error: e.issues});
         }
         console.error("Error occurred while deleting exercise by ID:", e);
+        res.status(500).json({message: "Internal server error", error: e});
+    }
+}
+
+export const clearExercises = async (req: AuthenticatedRequest, res: Response) => {
+    try{
+        const userId = req.user!.id;
+        await db.delete(exercises).where(eq(exercises.userId, userId));
+        res.status(200).json({message: "All exercises deleted successfully"});
+    }
+    catch (e) {
+        console.error("Error occurred while clearing exercises:", e);
         res.status(500).json({message: "Internal server error", error: e});
     }
 }

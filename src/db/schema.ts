@@ -20,8 +20,9 @@ export const exercises = mysqlTable("exercises", {
     }).notNull(),
     exerciseName: varchar("exercise_name", { length: 255 }).notNull(),
     description: text("description"),
-    repetitions: int("repetitions"),
-    sets: int("sets"),
+    weight: int("weight").notNull(),
+    repetitions: int("repetitions").notNull(),
+    sets: int("sets").notNull(),
     exerciseDate: date("exercise_date").notNull(),
 })
 
