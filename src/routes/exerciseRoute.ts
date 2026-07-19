@@ -2,7 +2,7 @@ import {Router} from "express";
 import {z} from "zod";
 import { validateBody } from "../middleware/validations.ts";
 import { authenticateToken } from "../middleware/authToken.ts";
-import { createExercise, getAllExercises, getExerciseById } from "../controllers/exerciseController.ts";
+import { createExercise, getUserExercises, getExerciseById, getExerciseByName } from "../controllers/exerciseController.ts";
 
 const router = Router();
 
@@ -17,7 +17,8 @@ const exerciseSchema = z.object({
 })
 
 router.post("/create", validateBody(exerciseSchema), createExercise);
-router.get("/all", getAllExercises);
-router.get("/one/:id", getExerciseById);
+router.get("/", getUserExercises);
+router.get("/id/:id", getExerciseById);
+router.get("/name/:name", getExerciseByName);
 export default router;
 
